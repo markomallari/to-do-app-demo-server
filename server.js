@@ -35,7 +35,6 @@ app.post("/check-account", (req, res) => {
       (user) => username === user.username && password === user.password
     );
 
-
     res.status(200).json({
       status: user.length === 1 ? "User exists" : "User does not exist",
       userExists: user.length === 1,
@@ -45,7 +44,7 @@ app.post("/check-account", (req, res) => {
 });
 
 app.get("/tasks", (req, res) => {
-  fs.readFile("db.json", "utf8", (err, data) => {
+  fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send("Internal Server Error");
@@ -63,7 +62,7 @@ app.get("/tasks", (req, res) => {
 app.post("/task", (req, res) => {
   const { name, description, comments } = req.body;
 
-  fs.readFile("db.json", "utf8", (err, data) => {
+  fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send("Internal Server Error");
@@ -86,7 +85,7 @@ app.post("/task", (req, res) => {
 
     jsonData.data.push(newItem);
 
-    fs.writeFile("db.json", JSON.stringify(jsonData), (err) => {
+    fs.writeFile("database.json", JSON.stringify(jsonData), (err) => {
       if (err) {
         console.log(err);
         res.status(500).send("Internal Server Error");
@@ -102,7 +101,7 @@ app.put("/task/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const { name, description, comments } = req.body;
 
-  fs.readFile("db.json", "utf8", (err, data) => {
+  fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send("Internal Server Error");
@@ -125,7 +124,7 @@ app.put("/task/:id", (req, res) => {
       comments,
     };
 
-    fs.writeFile("db.json", JSON.stringify(jsonData), (err) => {
+    fs.writeFile("database.json", JSON.stringify(jsonData), (err) => {
       if (err) {
         console.log(err);
         res.status(500).send("Internal Server Error");
@@ -140,7 +139,7 @@ app.put("/task/:id", (req, res) => {
 app.delete("/task/:id", (req, res) => {
   const id = parseInt(req.params.id);
 
-  fs.readFile("db.json", "utf8", (err, data) => {
+  fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send("Internal Server Error");
@@ -158,7 +157,7 @@ app.delete("/task/:id", (req, res) => {
 
     jsonData.data.splice(index, 1);
 
-    fs.writeFile("db.json", JSON.stringify(jsonData), (err) => {
+    fs.writeFile("database.json", JSON.stringify(jsonData), (err) => {
       if (err) {
         console.log(err);
         res.status(500).send("Internal Server Error");
