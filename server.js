@@ -30,14 +30,16 @@ app.post("/check-account", (req, res) => {
     }
 
     const jsonData = JSON.parse(data);
-    console.log(jsonData);
+
     const user = jsonData?.users.filter(
       (user) => username === user.username && password === user.password
     );
 
+
     res.status(200).json({
       status: user.length === 1 ? "User exists" : "User does not exist",
       userExists: user.length === 1,
+      data: user,
     });
   });
 });

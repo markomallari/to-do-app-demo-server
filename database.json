@@ -2,11 +2,13 @@
   "users": [
     {
       "username": "test@test.com",
-      "password": "123"
+      "password": "123",
+      "name": "Bill Clinton"
     },
     {
       "username": "test1@test.com",
-      "password": "123"
+      "password": "123",
+      "name": "Michael Johnson"
     }
   ]
 }
