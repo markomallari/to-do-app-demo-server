@@ -36,7 +36,8 @@ app.post("/check-account", (req, res) => {
     );
 
     res.status(200).json({
-      status: user.length === 1 ? "User exists" : "User does not exist",
+      status:
+        user.length === 1 ? "User exists" : "Invalid username or password!",
       userExists: user.length === 1,
       data: user,
     });
